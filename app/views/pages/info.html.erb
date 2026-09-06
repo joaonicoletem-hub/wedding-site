@@ -1,0 +1,85 @@
+<% content_for(:title, "O Casamento · Desi & João") %>
+
+<section class="section-pad text-center">
+  <p class="font-caps text-gold text-xs tracking-widest">O Casamento</p>
+  <h1 class="font-script text-gold text-5xl sm:text-6xl mt-3">Desi &amp; João</h1>
+  <div class="gold-divider mt-6"><span class="star-4"></span></div>
+  <p class="font-serif text-cream text-lg sm:text-xl mt-6 max-w-2xl mx-auto italic">
+    Estamos muito felizes em compartilhar este dia especial com você.
+    Abaixo, todos os detalhes para você se preparar e celebrar com a gente.
+  </p>
+</section>
+
+<section class="pb-16 px-6">
+  <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+
+    <div class="gold-card text-center">
+      <p class="font-caps text-gold text-xs">Data &amp; Hora</p>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <p class="font-serif text-cream text-2xl">19 de Junho de 2027</p>
+      <p class="font-serif text-gold text-lg mt-1">Sábado · 17h</p>
+    </div>
+
+    <div class="gold-card text-center">
+      <p class="font-caps text-gold text-xs">Local</p>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <p class="font-serif text-cream text-xl">Capela da Sé</p>
+      <p class="font-serif text-gold text-sm mt-1 italic">São Paulo · Brasil</p>
+    </div>
+
+    <div class="gold-card text-center">
+      <p class="font-caps text-gold text-xs">Recepção</p>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <p class="font-serif text-cream text-xl">19h30</p>
+      <p class="font-serif text-gold text-sm mt-1 italic">após a cerimônia</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="pb-16 px-6">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="font-caps text-gold text-sm text-center mb-6">Ordem da Cerimônia</h2>
+    <div class="space-y-4">
+      <% [
+        ["17h00", "Recepção dos convidados"],
+        ["17h30", "Início da cerimônia"],
+        ["18h15", "Saída dos noivos & cumprimentos"],
+        ["19h30", "Início da recepção"],
+        ["23h00", "Brinde final & despedida"]
+      ].each do |time, desc| %>
+        <div class="flex items-baseline gap-4 border-b border-gold/20 pb-3">
+          <span class="font-caps text-gold text-xs w-16 shrink-0"><%= time %></span>
+          <span class="font-serif text-cream text-lg"><%= desc %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="pb-20 px-6 text-center">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="font-caps text-gold text-sm mb-4">Como Chegar</h2>
+    <div class="gold-card overflow-hidden p-0">
+      <div class="aspect-video w-full">
+        <iframe
+          src="https://www.google.com/maps?q=Capela%20da%20Se%20Sao%20Paulo&output=embed"
+          class="w-full h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa do local do casamento">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-20 px-6 text-center">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="font-caps text-gold text-sm mb-4">Contato</h2>
+    <p class="font-serif text-cream text-lg">
+      Dúvidas ou recados? Fale com os noivos:
+    </p>
+    <p class="font-serif text-gold text-lg mt-2">desi.e.joao@gmail.com</p>
+  </div>
+</section>

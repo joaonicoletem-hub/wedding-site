@@ -1,0 +1,21 @@
+# Environment variables (keep secrets out of version control)
+.env
+
+# Rails / Ruby
+/log/*
+/tmp/*
+/storage/*
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+
+# Build artifacts
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# OS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
