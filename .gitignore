@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # macOS
 __MACOSX/
 .DS_Store
@@ -12,3 +13,43 @@ log/
 # Editor
 *.swp
 *.swo
+=======
+# Environment variables (keep secrets out of version control)
+.env
+
+# Rails / Ruby
+/log/*
+/tmp/*
+/storage/*
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+
+# Build artifacts
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# OS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+>>>>>>> origin/main
+
+# Combined ignores (merged HEAD and origin/main)
+.env
+__MACOSX/
+.DS_Store
+/log/*
+/tmp/*
+/storage/*
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+/app/assets/builds/*
+!/app/assets/builds/.keep
+*.swp
+*.swo
+.idea/
+.vscode/

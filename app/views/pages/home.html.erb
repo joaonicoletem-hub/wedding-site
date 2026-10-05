@@ -1,0 +1,26 @@
+<% content_for(:title, "Desi & João · Save the Date") %>
+
+<section class="section-pad flex flex-col items-center justify-center text-center">
+  <%# Oval golden frame with the save-the-date content %>
+  <div class="oval-frame w-full max-w-2xl aspect-[4/5] sm:aspect-[3/4] flex flex-col items-center justify-center px-8 py-16 gap-6">
+    <p class="font-caps text-gold text-sm sm:text-base">Save the Date</p>
+
+    <div class="gold-divider"><span class="star-4"></span></div>
+
+    <h1 class="font-script text-gold leading-tight">
+      <span class="text-6xl sm:text-7xl block">Desi</span>
+      <span class="text-3xl sm:text-4xl block my-1">&amp;</span>
+      <span class="text-6xl sm:text-7xl block">João</span>
+    </h1>
+
+    <div class="gold-divider"><span class="star-4"></span></div>
+
+    <p class="font-serif text-gold text-lg sm:text-xl tracking-wide">19 de Junho, 2027</p>
+    <p class="font-caps text-gold text-xs sm:text-sm">São Paulo · Brasil</p>
+  </div>
+
+  <div class="mt-12 flex flex-col items-center gap-6">
+    <%= link_to "Confirmar Presença", "#", class: "btn-gold opacity-50 pointer-events-none", title: "Em breve" %>
+    <%= link_to "Ver detalhes do casamento →", info_path, class: "font-serif text-gold text-lg italic hover:text-starlight transition-colors" %>
+  </div>
+</section>
