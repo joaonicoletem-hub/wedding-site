@@ -1,0 +1,48 @@
+<%# Inline edit form rendered inside the matching Turbo Frame. %>
+<% frame_id = "section_#{section.page}_#{section.name}" %>
+
+<%= turbo_frame_tag frame_id do %>
+  <%= form_with model: section,
+        url: section.persisted? ? admin_page_section_path(section, inline: 1) : admin_page_sections_path(inline: 1),
+        method: section.persisted? ? :patch : :post,
+        local: true,
+        class: "inline-form" do |f| %>
+
+    <%= f.hidden_field :page %>
+    <%= f.hidden_field :name %>
+    <% if section.new_record? %>
+      <%= f.hidden_field :page, value: section.page %>
+      <%= f.hidden_field :name, value: section.name %>
+    <% end %>
+
+    <% if section.errors.any? %>
+      <div class="inline-errors">
+        <% section.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="inline-form-row">
+      <%= f.label :title, "Título", class: "inline-label" %>
+      <%= f.text_field :title, class: "input-gold inline-input" %>
+    </div>
+
+    <div class="inline-form-row">
+      <%= f.label :body, "Texto (rich)", class: "inline-label" %>
+      <%= f.hidden_field :body, id: "inline_body_#{frame_id}" %>
+      <trix-editor input="inline_body_<%= frame_id %>" class="trix-content inline-input"></trix-editor>
+    </div>
+
+    <div class="inline-form-actions">
+      <%= f.submit "Salvar", class: "btn-gold" %>
+      <% if section.persisted? %>
+        <%= link_to "Cancelar", admin_page_section_path(section, inline: 1),
+              class: "btn-gold", data: { turbo_frame: frame_id } %>
+      <% else %>
+        <%= link_to "Cancelar", "#", class: "btn-gold",
+              data: { controller: "inline-cancel", action: "click->inline-cancel#cancel" } %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

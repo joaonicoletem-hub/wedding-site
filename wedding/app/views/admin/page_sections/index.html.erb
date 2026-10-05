@@ -1,0 +1,31 @@
+<% content_for(:title, "Seções de texto") %>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="font-script text-gold text-4xl">Seções</h1>
+  <%= link_to "Nova seção", new_admin_page_section_path, class: "btn-gold" %>
+</div>
+
+<% if @sections.empty? %>
+  <div class="gold-card text-center">
+    <p class="font-serif text-cream/70 italic">Nenhuma seção ainda. Clique em "Nova seção".</p>
+  </div>
+<% else %>
+  <% @sections.each do |page, sections| %>
+    <h2 class="font-caps text-gold text-xs mt-8 mb-3 capitalize"><%= page %></h2>
+    <div class="space-y-3">
+      <% sections.each do |section| %>
+        <div class="gold-card flex items-center justify-between gap-4">
+          <div class="min-w-0">
+            <p class="font-serif text-cream text-lg"><%= section.name %></p>
+            <p class="font-serif text-gold/80 text-sm italic truncate"><%= strip_tags(section.title.to_s).presence || "—" %></p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <%= link_to "Editar", edit_admin_page_section_path(section), class: "btn-gold" %>
+            <%= button_to "Remover", admin_page_section_path(section), method: :delete,
+                  class: "btn-gold", data: { turbo_confirm: "Remover a seção \"#{section.name}\"?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

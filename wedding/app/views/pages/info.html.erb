@@ -1,0 +1,114 @@
+<% content_for(:title, "O Casamento · Desi & João") %>
+
+<section class="section-pad text-center">
+  <%= editable_section("info", "kicker") do %>
+    <p class="font-caps text-gold text-xs tracking-widest"><%= section_title("info", "kicker", fallback: "O Casamento") %></p>
+  <% end %>
+
+  <%= editable_section("info", "couple") do %>
+    <h1 class="font-script text-gold text-5xl sm:text-6xl mt-3">
+      <%= section_title("info", "couple", fallback: "Desi & João") %>
+    </h1>
+  <% end %>
+
+  <div class="gold-divider mt-6"><span class="star-4"></span></div>
+
+  <%= editable_section("info", "intro") do %>
+    <p class="font-serif text-cream text-lg sm:text-xl mt-6 max-w-2xl mx-auto italic">
+      <%= section_body("info", "intro", fallback: "Estamos muito felizes em compartilhar este dia especial com você. Abaixo, todos os detalhes para você se preparar e celebrar com a gente.") %>
+    </p>
+  <% end %>
+</section>
+
+<section class="pb-16 px-6">
+  <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+
+    <div class="gold-card text-center">
+      <%= editable_section("info", "card_date_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("info", "card_date_title", fallback: "Data & Hora") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("info", "card_date_value") do %>
+        <p class="font-serif text-cream text-2xl"><%= section_title("info", "card_date_value", fallback: "19 de Junho de 2027") %></p>
+      <% end %>
+      <%= editable_section("info", "card_date_sub") do %>
+        <p class="font-serif text-gold text-lg mt-1"><%= section_title("info", "card_date_sub", fallback: "Sábado · 17h") %></p>
+      <% end %>
+    </div>
+
+    <div class="gold-card text-center">
+      <%= editable_section("info", "card_venue_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("info", "card_venue_title", fallback: "Local") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("info", "card_venue_value") do %>
+        <p class="font-serif text-cream text-xl"><%= section_title("info", "card_venue_value", fallback: "Capela da Sé") %></p>
+      <% end %>
+      <%= editable_section("info", "card_venue_sub") do %>
+        <p class="font-serif text-gold text-sm mt-1 italic"><%= section_title("info", "card_venue_sub", fallback: "São Paulo · Brasil") %></p>
+      <% end %>
+    </div>
+
+    <div class="gold-card text-center">
+      <%= editable_section("info", "card_reception_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("info", "card_reception_title", fallback: "Recepção") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("info", "card_reception_value") do %>
+        <p class="font-serif text-cream text-xl"><%= section_title("info", "card_reception_value", fallback: "19h30") %></p>
+      <% end %>
+      <%= editable_section("info", "card_reception_sub") do %>
+        <p class="font-serif text-gold text-sm mt-1 italic"><%= section_title("info", "card_reception_sub", fallback: "após a cerimônia") %></p>
+      <% end %>
+    </div>
+
+  </div>
+</section>
+
+<section class="pb-16 px-6">
+  <div class="max-w-3xl mx-auto">
+    <%= editable_section("info", "schedule_title") do %>
+      <h2 class="font-caps text-gold text-sm text-center mb-6"><%= section_title("info", "schedule_title", fallback: "Ordem da Cerimônia") %></h2>
+    <% end %>
+    <%= editable_section("info", "schedule") do %>
+      <div class="space-y-4">
+        <%= section_body("info", "schedule", fallback: "") %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="pb-20 px-6 text-center">
+  <div class="max-w-2xl mx-auto">
+    <%= editable_section("info", "map_title") do %>
+      <h2 class="font-caps text-gold text-sm mb-4"><%= section_title("info", "map_title", fallback: "Como Chegar") %></h2>
+    <% end %>
+    <div class="gold-card overflow-hidden p-0">
+      <div class="aspect-video w-full">
+        <iframe
+          src="<%= section_body("info", "map_embed_url", fallback: "https://www.google.com/maps?q=Capela%20da%20Se%20Sao%20Paulo&output=embed") %>"
+          class="w-full h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa do local do casamento">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-20 px-6 text-center">
+  <div class="max-w-2xl mx-auto">
+    <%= editable_section("info", "contact_title") do %>
+      <h2 class="font-caps text-gold text-sm mb-4"><%= section_title("info", "contact_title", fallback: "Contato") %></h2>
+    <% end %>
+    <%= editable_section("info", "contact_body") do %>
+      <p class="font-serif text-cream text-lg">
+        <%= section_body("info", "contact_body", fallback: "Dúvidas ou recados? Fale com os noivos:") %>
+      </p>
+    <% end %>
+    <%= editable_section("info", "contact_email") do %>
+      <p class="font-serif text-gold text-lg mt-2"><%= section_title("info", "contact_email", fallback: "desi.e.joao@gmail.com") %></p>
+    <% end %>
+  </div>
+</section>

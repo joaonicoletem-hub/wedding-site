@@ -1,0 +1,14 @@
+<% if params[:inline] %>
+  <%= render "inline_form", section: @section %>
+<% else %>
+  <% content_for(:title, "Editar seção") %>
+  <h1 class="font-script text-gold text-4xl mb-6">Editar seção</h1>
+  <%= form_with model: @section, url: admin_page_section_path(@section), method: :patch, local: true,
+        class: "gold-card space-y-5" do |f| %>
+    <%= render "form", f: f %>
+    <div class="flex items-center gap-3 pt-2">
+      <%= f.submit "Salvar", class: "btn-gold" %>
+      <%= link_to "Cancelar", admin_page_sections_path, class: "btn-gold" %>
+    </div>
+  <% end %>
+<% end %>

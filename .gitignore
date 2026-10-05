@@ -1,0 +1,14 @@
+# macOS
+__MACOSX/
+.DS_Store
+
+# Rails / temp
+tmp/
+log/
+
+# Environment
+.env
+
+# Editor
+*.swp
+*.swo

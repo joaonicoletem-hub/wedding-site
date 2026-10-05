@@ -1,0 +1,86 @@
+<% content_for(:title, "Dicas de Viagem · Desi & João") %>
+
+<section class="section-pad text-center">
+  <%= editable_section("travel", "kicker") do %>
+    <p class="font-caps text-gold text-xs tracking-widest"><%= section_title("travel", "kicker", fallback: "Dicas de Viagem") %></p>
+  <% end %>
+
+  <%= editable_section("travel", "title") do %>
+    <h1 class="font-script text-gold text-5xl sm:text-6xl mt-3">
+      <%= section_title("travel", "title", fallback: "Para nossos convidados") %>
+    </h1>
+  <% end %>
+
+  <div class="gold-divider mt-6"><span class="star-4"></span></div>
+
+  <%= editable_section("travel", "intro") do %>
+    <p class="font-serif text-cream text-lg sm:text-xl mt-6 max-w-2xl mx-auto italic">
+      <%= section_body("travel", "intro", fallback: "Reunimos algumas dicas para facilitar sua vinda a São Paulo e aproveitar a estadia.") %>
+    </p>
+  <% end %>
+</section>
+
+<section class="pb-10 px-6">
+  <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
+
+    <div class="gold-card">
+      <%= editable_section("travel", "stay_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("travel", "stay_title", fallback: "Hospedagem") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("travel", "stay_body") do %>
+        <div class="font-serif text-cream space-y-2">
+          <%= section_body("travel", "stay_body", fallback: "Sugerimos hotéis na região central, próximos ao local da cerimônia.") %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="gold-card">
+      <%= editable_section("travel", "flights_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("travel", "flights_title", fallback: "Voos") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("travel", "flights_body") do %>
+        <div class="font-serif text-cream space-y-2">
+          <%= section_body("travel", "flights_body", fallback: "O aeroporto mais próximo é o Guarulhos (GRU), a cerca de 30 km do centro.") %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="gold-card">
+      <%= editable_section("travel", "transport_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("travel", "transport_title", fallback: "Transporte") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("travel", "transport_body") do %>
+        <div class="font-serif text-cream space-y-2">
+          <%= section_body("travel", "transport_body", fallback: "Uber e táxi funcionam bem na cidade. Há também metrô com estações próximas aos pontos turísticos.") %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="gold-card">
+      <%= editable_section("travel", "sights_title") do %>
+        <p class="font-caps text-gold text-xs"><%= section_title("travel", "sights_title", fallback: "Passeios em SP") %></p>
+      <% end %>
+      <div class="gold-divider my-4"><span class="star-4"></span></div>
+      <%= editable_section("travel", "sights_body") do %>
+        <div class="font-serif text-cream space-y-2">
+          <%= section_body("travel", "sights_body", fallback: "Aproveite para visitar a Avenida Paulista, o MASP e o Parque do Ibirapuera.") %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</section>
+
+<section class="pb-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <%= editable_section("travel", "gallery_title") do %>
+      <h2 class="font-caps text-gold text-sm text-center mb-6"><%= section_title("travel", "gallery_title", fallback: "Galeria") %></h2>
+    <% end %>
+
+    <%# Editable gallery (inline add/remove when admin) %>
+    <%= render "admin/page_images/gallery_inline", page: "travel", section: "gallery" %>
+  </div>
+</section>

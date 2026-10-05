@@ -1,0 +1,28 @@
+<%# Inline image upload form, rendered inside the gallery Turbo Frame. %>
+<% frame_id = "images_#{image.page}_#{image.section}" %>
+
+<%= turbo_frame_tag frame_id do %>
+  <%= form_with model: image, url: admin_page_images_path(inline: 1), local: true, multipart: true,
+        class: "inline-form", data: { turbo_frame: frame_id } do |f| %>
+    <%= f.hidden_field :page %>
+    <%= f.hidden_field :section %>
+    <%= f.hidden_field :position, value: image.position || 0 %>
+
+    <% if image.errors.any? %>
+      <div class="inline-errors">
+        <% image.errors.full_messages.each do |msg| %><p><%= msg %></p><% end %>
+      </div>
+    <% end %>
+
+    <div class="inline-form-row">
+      <%= f.label :image, "Arquivo de imagem", class: "inline-label" %>
+      <%= f.file_field :image, class: "input-gold inline-input", accept: "image/*" %>
+    </div>
+
+    <div class="inline-form-actions">
+      <%= f.submit "Enviar", class: "btn-gold" %>
+      <%= link_to "Cancelar", "#", class: "btn-gold",
+            data: { controller: "inline-cancel", action: "click->inline-cancel#cancel" } %>
+    </div>
+  <% end %>
+<% end %>

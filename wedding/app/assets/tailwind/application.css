@@ -1,0 +1,375 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design System — Desi & João (celestial / night-sky theme)
+   Inspired by save_the_date.jpeg: deep navy + gold + starlight
+   ============================================================ */
+
+@theme {
+  --color-navy: #000033;
+  --color-navy-deep: #00001a;
+  --color-navy-soft: #0a0a3a;
+  --color-gold: #d4af37;
+  --color-gold-soft: #e6c86e;
+  --color-starlight: #e0f7fa;
+  --color-cream: #f5f0e1;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-script: "Great Vibes", cursive;
+  --font-caps: "Cinzel", serif;
+  --font-sans: "Cormorant Garamond", Georgia, serif;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-navy-deep);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- Starfield background (real image + navy overlay) ---------- */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+    background-image:
+    linear-gradient(180deg, rgba(0, 0, 26, 0.45) 0%, rgba(0, 0, 51, 0.55) 50%, rgba(5, 5, 35, 0.75) 100%),
+    url("background.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Generated stars (subtle extra sparkle on top of the photo) */
+.stars-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #ffffff, transparent),
+    radial-gradient(1px 1px at 28% 65%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 42% 28%, #ffffff, transparent),
+    radial-gradient(1px 1px at 58% 78%, #e0f7fa, transparent),
+    radial-gradient(1px 1px at 72% 12%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 88% 58%, #ffffff, transparent),
+    radial-gradient(1px 1px at 92% 32%, #e0f7fa, transparent),
+    radial-gradient(1px 1px at 18% 48%, #ffffff, transparent),
+    radial-gradient(1px 1px at 38% 88%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 62% 42%, #ffffff, transparent),
+    radial-gradient(1px 1px at 80% 82%, #e0f7fa, transparent),
+    radial-gradient(1px 1px at 8% 72%, #ffffff, transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.5;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.55; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* ---------- Typography helpers ---------- */
+.font-script { font-family: var(--font-script); }
+.font-caps   { font-family: var(--font-caps); letter-spacing: 0.18em; }
+.font-serif  { font-family: var(--font-serif); }
+
+.text-gold  { color: var(--color-gold); }
+.text-starlight { color: var(--color-starlight); }
+.text-cream { color: var(--color-cream); }
+
+/* ---------- Gold divider with center star ---------- */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 auto;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+.gold-divider .star {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Four-pointed star glyph */
+.star-4 {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  background: var(--color-gold);
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+}
+
+/* ---------- Oval golden frame (double line) ---------- */
+.oval-frame {
+  position: relative;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px transparent, inset 0 0 0 5px var(--color-gold);
+}
+
+/* ---------- Buttons / links ---------- */
+.btn-gold {
+  display: inline-block;
+  padding: 0.75rem 2.5rem;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-family: var(--font-caps);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  background: transparent;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+.btn-gold:hover {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+
+a.nav-link {
+  color: var(--color-gold);
+  font-family: var(--font-caps);
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+a.nav-link:hover { opacity: 1; }
+a.nav-link.active { opacity: 1; border-bottom: 1px solid var(--color-gold); }
+
+/* ---------- Cards (info / travel) ---------- */
+.gold-card {
+  background: rgba(5, 5, 35, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 4px;
+  padding: 1.75rem;
+  backdrop-filter: blur(2px);
+}
+
+/* ---------- Form inputs (used in RSVP later) ---------- */
+.input-gold {
+  width: 100%;
+  background: rgba(5, 5, 35, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--color-cream);
+  padding: 0.65rem 0.9rem;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+}
+.input-gold:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-gold);
+}
+.input-gold::placeholder { color: rgba(245, 240, 225, 0.4); }
+
+/* ---------- Section spacing ---------- */
+.section-pad { padding: 5rem 1.25rem; }
+@media (min-width: 768px) {
+  .section-pad { padding: 6rem  2rem; }
+}
+
+/* ---------- Inline edit (edit in place) ---------- */
+.inline-edit-btn {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--color-gold);
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: rgba(5, 5, 35, 0.7);
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.inline-edit-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+
+/* Wrapper that holds content + edit button (admin only) */
+turbo-frame[id^="section_"] {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+turbo-frame[id^="section_"] .inline-edit-btn {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+}
+turbo-frame[id^="section_"]:hover .inline-edit-btn,
+turbo-frame[id^="section_"]:focus-within .inline-edit-btn {
+  opacity: 1;
+}
+
+/* Inline edit form (replaces content inside the frame) */
+.inline-form {
+  background: rgba(5, 5, 35, 0.92);
+  border: 1px solid var(--color-gold);
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.inline-form-row {
+  margin-bottom: 0.75rem;
+  box-sizing: border-box;
+}
+.inline-label {
+  display: block;
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+.inline-input {
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.inline-form .input-gold {
+  width: 100%;
+  box-sizing: border-box;
+}
+.inline-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+/* Compact buttons inside inline forms so they don't overflow */
+.inline-form .btn-gold {
+  padding: 0.4rem 1.1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+.inline-errors {
+  color: #fca5a5;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+.inline-content { display: contents; }
+
+/* Trix editor: constrain width inside inline forms */
+.inline-form trix-editor {
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 80px;
+}
+
+/* ---------- Trix dark-theme overrides (gold on navy) ---------- */
+/* The default trix.css assumes a light background; override for our dark theme. */
+trix-toolbar .trix-toolbar {
+  background: transparent;
+}
+trix-toolbar .trix-button-group {
+  border-color: rgba(212, 175, 55, 0.4);
+  margin-bottom: 0.5rem;
+}
+trix-toolbar .trix-button {
+  color: var(--color-gold);
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(5, 5, 35, 0.6);
+}
+trix-toolbar .trix-button:hover {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+  border-color: var(--color-gold);
+}
+trix-toolbar .trix-button.trix-active {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+/* The dialog (link input) */
+trix-toolbar .trix-dialog {
+  background: rgba(5, 5, 35, 0.95);
+  border-color: var(--color-gold);
+}
+trix-toolbar .trix-dialog .trix-input {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(5, 5, 35, 0.7);
+  color: var(--color-cream);
+}
+trix-toolbar .trix-dialog .trix-button--dialog {
+  color: var(--color-gold);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+/* The editor content area */
+trix-editor {
+  background: rgba(5, 5, 35, 0.5);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--color-cream);
+}
+trix-editor:focus {
+  border-color: var(--color-gold);
+}
+trix-editor h1, trix-editor h2, trix-editor h3 {
+  color: var(--color-gold);
+}
+trix-editor a {
+  color: var(--color-gold);
+}
+
+/* Admin mode indicator bar (public pages, admin only) */
+.admin-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(5, 5, 35, 0.95);
+  border-top: 1px solid var(--color-gold);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-caps);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+.admin-bar a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

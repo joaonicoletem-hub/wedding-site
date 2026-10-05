@@ -1,0 +1,32 @@
+<% if f.object.errors.any? %>
+  <div class="gold-card !border-red-400/60">
+    <p class="font-serif text-red-300 text-sm"><%= pluralize(f.object.errors.count, "erro") %>:</p>
+    <ul class="list-disc list-inside font-serif text-red-300 text-sm">
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div>
+  <%= f.label :page, "Página", class: "block font-caps text-gold text-xs mb-1" %>
+  <%= f.select :page, PageSection::PAGES.map { |p| [p.humanize, p] }, {},
+        class: "input-gold" %>
+</div>
+
+<div>
+  <%= f.label :name, "Nome (chave única, ex: hero_title)", class: "block font-caps text-gold text-xs mb-1" %>
+  <%= f.text_field :name, class: "input-gold" %>
+</div>
+
+<div>
+  <%= f.label :title, "Título (texto curto)", class: "block font-caps text-gold text-xs mb-1" %>
+  <%= f.text_field :title, class: "input-gold" %>
+</div>
+
+<div>
+  <%= f.label :body, "Corpo (rich text)", class: "block font-caps text-gold text-xs mb-1" %>
+  <%= f.hidden_field :body, id: "section_body" %>
+  <trix-editor input="section_body" class="trix-content bg-navy-soft/60 border border-gold/40 rounded text-cream"></trix-editor>
+</div>

@@ -1,0 +1,30 @@
+<%# Inline gallery: list of images + add/remove buttons, inside the gallery Turbo Frame. %>
+<% frame_id = "images_#{page}_#{section}" %>
+
+<%= turbo_frame_tag frame_id do %>
+  <% images = PageImage.for(page, section).select { |i| i.image.attached? } %>
+
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+    <% images.each do |image| %>
+      <div class="gold-card p-2 relative">
+        <%= image_tag image.image, alt: image.section, class: "w-full h-48 object-cover rounded" %>
+        <p class="font-serif text-cream/60 text-xs mt-2">pos: <%= image.position %></p>
+        <%= button_to "Remover", admin_page_image_path(image), method: :delete,
+              class: "btn-gold w-full mt-2 !py-1 !text-xs",
+              data: { turbo_confirm: "Remover esta imagem?", turbo_frame: frame_id } %>
+      </div>
+    <% end %>
+
+    <% if images.empty? && !admin? %>
+      <p class="font-serif text-cream/40 italic">Nenhuma imagem ainda.</p>
+    <% end %>
+  </div>
+
+  <% if admin? %>
+    <div class="mt-4 text-center">
+      <%= link_to "＋ Adicionar imagem",
+            new_admin_page_image_path("page_image[page]" => page, "page_image[section]" => section, inline: 1),
+            class: "btn-gold", data: { turbo_frame: frame_id } %>
+    </div>
+  <% end %>
+<% end %>

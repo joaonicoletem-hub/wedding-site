@@ -1,0 +1,31 @@
+<% content_for(:title, "Imagens") %>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="font-script text-gold text-4xl">Imagens</h1>
+  <%= link_to "Nova imagem", new_admin_page_image_path, class: "btn-gold" %>
+</div>
+
+<% if @images.empty? %>
+  <div class="gold-card text-center">
+    <p class="font-serif text-cream/70 italic">Nenhuma imagem ainda. Clique em "Nova imagem".</p>
+  </div>
+<% else %>
+  <% @images.each do |page, images| %>
+    <h2 class="font-caps text-gold text-xs mt-8 mb-3 capitalize"><%= page %></h2>
+    <div class="grid gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <% images.each do |image| %>
+        <div class="gold-card p-2">
+          <% if image.image.attached? %>
+            <%= image_tag image.image,
+                  alt: image.section, class: "w-full h-32 object-cover rounded" %>
+          <% end %>
+          <p class="font-serif text-cream text-sm mt-2"><%= image.section %></p>
+          <p class="font-serif text-cream/50 text-xs">pos: <%= image.position %></p>
+          <%= button_to "Remover", admin_page_image_path(image), method: :delete,
+                class: "btn-gold w-full mt-2 !py-1 !text-xs",
+                data: { turbo_confirm: "Remover esta imagem?" } %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

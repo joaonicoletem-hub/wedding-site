@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Desi & João · 19 Jun 2027" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Desi & João">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Google Fonts: Cinzel (caps), Great Vibes (script), Playfair Display (serif), Cormorant Garamond (body) %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <%# Trix editor styles (loaded before tailwind so theme overrides win) %>
+    <%= stylesheet_link_tag "trix", "data-turbo-track": "reload" %>
+    <%# Gold-colored Trix icons (override black default) %>
+    <%= stylesheet_link_tag "trix_gold_overrides", "data-turbo-track": "reload" %>
+    <%# Tailwind CSS build output (app/assets/builds/tailwind.css) %>
+    <%= stylesheet_link_tag :tailwind, "data-turbo-track": "reload" %>
+
+    <%# JavaScript via importmap (Trix editor) %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%# Starfield background layers %>
+    <div class="starfield" aria-hidden="true"></div>
+    <div class="stars-layer" aria-hidden="true"></div>
+
+    <%# Navbar %>
+    <nav class="relative z-10 w-full">
+      <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+        <%= link_to root_path, class: "flex items-center", aria: { label: "Desi & João - Início" } do %>
+          <%= image_tag "monogram.png", alt: "Monograma Desi & João", class: "h-12 w-12 object-contain" %>
+        <% end %>
+        <div class="flex items-center gap-6 sm:gap-8">
+          <%= link_to "Início", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to "O Casamento", info_path, class: "nav-link #{'active' if current_page?(info_path)}" %>
+          <%= link_to "Dicas de Viagem", travel_path, class: "nav-link #{'active' if current_page?(travel_path)}" %>
+          <%= link_to "Confirmar Presença", "#", class: "nav-link opacity-50 pointer-events-none", title: "Em breve" %>
+        </div>
+      </div>
+    </nav>
+
+    <%# Flash messages %>
+    <% if flash.any? %>
+      <div class="max-w-3xl mx-auto px-6 mt-4 relative z-10">
+        <% flash.each do |type, msg| %>
+          <div class="gold-card text-center text-gold font-serif"><%= msg %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%# Page content %>
+    <main class="relative z-10">
+      <%= yield %>
+    </main>
+
+    <%# Footer %>
+    <footer class="relative z-10 mt-16 py-10 text-center">
+      <div class="gold-divider mb-5"><span class="star-4"></span></div>
+      <%= image_tag "monogram.png", alt: "Monograma Desi & João", class: "h-24 w-24 object-contain mx-auto" %>
+      <p class="font-caps text-gold text-xs mt-3">19 · 06 · 2027 · SÃO PAULO · BRASIL</p>
+    </footer>
+
+    <%# Admin mode indicator (only when authenticated as admin) %>
+    <% if admin? %>
+      <div class="admin-bar">
+        <span>✦ Modo edição ativo</span>
+        <%= link_to "Painel admin", admin_root_path, target: "_blank" %>
+        <span class="opacity-60">·</span>
+        <%= link_to "Sair", admin_root_path, data: { turbo: false } %>
+      </div>
+    <% end %>
+  </body>
+</html>

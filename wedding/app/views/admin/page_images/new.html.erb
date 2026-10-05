@@ -1,0 +1,39 @@
+<% content_for(:title, "Nova imagem") %>
+
+<h1 class="font-script text-gold text-4xl mb-6">Nova imagem</h1>
+
+<%= form_with model: @image, url: admin_page_images_path, local: true, multipart: true,
+      class: "gold-card space-y-5" do |f| %>
+  <% if @image.errors.any? %>
+    <div class="gold-card !border-red-400/60">
+      <ul class="list-disc list-inside font-serif text-red-300 text-sm">
+        <% @image.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :page, "Página", class: "block font-caps text-gold text-xs mb-1" %>
+    <%= f.select :page, PageSection::PAGES.map { |p| [p.humanize, p] }, {}, class: "input-gold" %>
+  </div>
+
+  <div>
+    <%= f.label :section, "Seção (ex: gallery, hero)", class: "block font-caps text-gold text-xs mb-1" %>
+    <%= f.text_field :section, class: "input-gold" %>
+  </div>
+
+  <div>
+    <%= f.label :position, "Posição (menor = primeiro)", class: "block font-caps text-gold text-xs mb-1" %>
+    <%= f.number_field :position, value: @image.position || 0, class: "input-gold" %>
+  </div>
+
+  <div>
+    <%= f.label :image, "Arquivo de imagem", class: "block font-caps text-gold text-xs mb-1" %>
+    <%= f.file_field :image, class: "input-gold", accept: "image/*" %>
+  </div>
+
+  <div class="flex items-center gap-3 pt-2">
+    <%= f.submit "Enviar", class: "btn-gold" %>
+    <%= link_to "Cancelar", admin_page_images_path, class: "btn-gold" %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<% content_for(:title, "Desi & João · Save the Date") %>
+
+<section class="section-pad flex flex-col items-center justify-center text-center">
+  <%# Oval golden frame with the save-the-date content %>
+  <div class="oval-frame w-full max-w-2xl aspect-[4/5] sm:aspect-[3/4] flex flex-col items-center justify-center px-8 py-16 gap-6">
+    <%= editable_section("home", "save_the_date") do %>
+      <p class="font-caps text-gold text-sm sm:text-base">
+        <%= section_title("home", "save_the_date", fallback: "Save the Date") %>
+      </p>
+    <% end %>
+
+    <div class="gold-divider"><span class="star-4"></span></div>
+
+    <h1 class="font-script text-gold leading-tight">
+      <%= editable_section("home", "name_1") do %>
+        <span class="text-6xl sm:text-7xl block"><%= section_title("home", "name_1", fallback: "Desi") %></span>
+      <% end %>
+      <span class="text-3xl sm:text-4xl block my-1">&amp;</span>
+      <%= editable_section("home", "name_2") do %>
+        <span class="text-6xl sm:text-7xl block"><%= section_title("home", "name_2", fallback: "João") %></span>
+      <% end %>
+    </h1>
+
+    <div class="gold-divider"><span class="star-4"></span></div>
+
+    <%= editable_section("home", "date") do %>
+      <p class="font-serif text-gold text-lg sm:text-xl tracking-wide">
+        <%= section_title("home", "date", fallback: "19 de Junho, 2027") %>
+      </p>
+    <% end %>
+
+    <%= editable_section("home", "location") do %>
+      <p class="font-caps text-gold text-xs sm:text-sm">
+        <%= section_title("home", "location", fallback: "São Paulo · Brasil") %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mt-12 flex flex-col items-center gap-6">
+    <%= link_to "Confirmar Presença", "#", class: "btn-gold opacity-50 pointer-events-none", title: "Em breve" %>
+    <%= link_to "Ver detalhes do casamento →", info_path, class: "font-serif text-gold text-lg italic hover:text-starlight transition-colors" %>
+  </div>
+</section>

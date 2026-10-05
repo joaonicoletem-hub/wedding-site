@@ -1,0 +1,14 @@
+<%# After saving inline: render the section content + edit button inside the frame. %>
+<% frame_id = "section_#{section.page}_#{section.name}" %>
+
+<%= turbo_frame_tag frame_id do %>
+  <div class="inline-content">
+    <% if section.title.present? %>
+      <div class="inline-title"><%= section.title %></div>
+    <% end %>
+    <% if section.body.present? %>
+      <div class="inline-body"><%= section.body.html_safe %></div>
+    <% end %>
+  </div>
+  <%= inline_edit_button(section.page, section.name, frame_id) %>
+<% end %>

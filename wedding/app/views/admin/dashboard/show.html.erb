@@ -1,0 +1,31 @@
+<% content_for(:title, "Dashboard Admin") %>
+
+<h1 class="font-script text-gold text-4xl mb-2">Painel</h1>
+<p class="font-serif text-cream/70 italic mb-8">Edite o conteúdo e as imagens das páginas do site.</p>
+
+<div class="grid gap-5 sm:grid-cols-2 mb-10">
+  <%= link_to admin_page_sections_path, class: "gold-card hover:border-gold transition-colors" do %>
+    <p class="font-caps text-gold text-xs">Seções de texto</p>
+    <p class="font-serif text-cream text-3xl mt-2"><%= @sections_count %></p>
+    <p class="font-serif text-cream/60 text-sm italic">editar textos das páginas</p>
+  <% end %>
+
+  <%= link_to admin_page_images_path, class: "gold-card hover:border-gold transition-colors" do %>
+    <p class="font-caps text-gold text-xs">Imagens</p>
+    <p class="font-serif text-cream text-3xl mt-2"><%= @images_count %></p>
+    <p class="font-serif text-cream/60 text-sm italic">gerenciar imagens das páginas</p>
+  <% end %>
+</div>
+
+<h2 class="font-caps text-gold text-xs mb-4">Páginas do site</h2>
+<div class="grid gap-4 sm:grid-cols-3">
+  <% @pages.each do |page| %>
+    <div class="gold-card">
+      <p class="font-serif text-cream text-lg capitalize"><%= page %></p>
+      <p class="font-serif text-cream/60 text-sm italic mt-1">
+        <%= PageSection.where(page: page).count %> seções ·
+        <%= PageImage.where(page: page).count %> imagens
+      </p>
+    </div>
+  <% end %>
+</div>
