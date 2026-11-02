@@ -1,0 +1,61 @@
+<% content_for(:title, "Confirmar Presença · Desi & João") %>
+
+<section class="section-pad px-6">
+  <div class="max-w-2xl mx-auto">
+    <p class="font-caps text-gold text-xs tracking-[0.25em] text-center">Confirmação de presença</p>
+    <h1 class="font-script text-gold text-5xl sm:text-6xl mt-3 text-center">A gente vai celebrar com você!</h1>
+
+    <div class="gold-divider mt-6"><span class="star-4"></span></div>
+
+    <%= form_with model: @rsvp, url: rsvp_path, class: "mt-10 space-y-6" do |form| %>
+      <% if @rsvp.errors.any? %>
+        <div class="gold-card border-red-500/60 bg-red-500/5">
+          <p class="font-serif text-red-200 text-lg mb-2">Por favor, corrija os campos abaixo:</p>
+          <ul class="list-disc list-inside text-red-100">
+            <% @rsvp.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="space-y-2">
+        <%= form.label :name, "Nome completo", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.text_field :name, class: "input-gold", placeholder: "Seu nome" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :email, "E-mail", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.email_field :email, class: "input-gold", placeholder: "seu@email.com" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :attending, "Você vai comparecer?", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+          <label class="flex items-center gap-2 text-cream">
+            <%= form.radio_button :attending, true %>
+            <span>Sim, estarei presente</span>
+          </label>
+          <label class="flex items-center gap-2 text-cream">
+            <%= form.radio_button :attending, false %>
+            <span>Não poderei ir</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :guests_count, "Número de convidados", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.number_field :guests_count, min: 0, max: 10, class: "input-gold" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :message, "Mensagem / observações", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.text_area :message, rows: 4, class: "input-gold", placeholder: "Alguma observação ou restrição?" %>
+      </div>
+
+      <div class="pt-3">
+        <%= form.submit "Confirmar presença", class: "btn-gold w-full text-center" %>
+      </div>
+    <% end %>
+  </div>
+</section>

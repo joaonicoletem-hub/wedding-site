@@ -1,0 +1,39 @@
+<% content_for(:title, "Confirmações de presença") %>
+
+<div class="flex items-center justify-between mb-6 gap-4">
+  <h1 class="font-script text-gold text-4xl">Confirmações</h1>
+  <%= link_to "Exportar CSV", export_admin_rsvps_path(format: :csv), class: "btn-gold" %>
+</div>
+
+<% if @rsvps.any? %>
+  <div class="overflow-x-auto gold-card">
+    <table class="w-full text-left text-sm sm:text-base">
+      <thead>
+        <tr class="border-b border-gold/30">
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Nome</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">E-mail</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Presença</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Convidados</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Mensagem</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rsvps.each do |rsvp| %>
+          <tr class="border-b border-gold/20">
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.name %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.email %></td>
+            <td class="py-3 pr-4 font-serif text-gold"><%= rsvp.attending ? "Sim" : "Não" %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.guests_count %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.message.presence || "—" %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.created_at.strftime("%d/%m/%Y") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="gold-card text-center">
+    <p class="font-serif text-cream/70 italic">Ainda não há confirmações de presença.</p>
+  </div>
+<% end %>

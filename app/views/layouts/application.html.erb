@@ -38,8 +38,7 @@
         <div class="flex items-center gap-6 sm:gap-8">
           <%= link_to "Início", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
           <%= link_to "O Casamento", info_path, class: "nav-link #{'active' if current_page?(info_path)}" %>
-          <%= link_to "Dicas de Viagem", "#", class: "nav-link opacity-50 pointer-events-none", title: "Em breve" %>
-          <%= link_to "Confirmar Presença", "#", class: "nav-link opacity-50 pointer-events-none", title: "Em breve" %>
+          <%= link_to "Confirmar Presença", rsvp_path, class: "nav-link #{'active' if current_page?(rsvp_path)}" %>
         </div>
       </div>
     </nav>
