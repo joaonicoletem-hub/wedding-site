@@ -1,0 +1,58 @@
+@startuml Casos_de_Uso_Site_Casamento
+left to right direction
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #FFFDF7
+  BorderColor #7A5A13
+}
+
+actor "Convidado" as Convidado
+actor "Administrador" as Admin
+
+rectangle "Site de Casamento — Desi & João" {
+  usecase "Visualizar página inicial" as UC1
+  usecase "Consultar informações do casamento" as UC2
+  usecase "Confirmar presença" as UC3
+  usecase "Informar quantidade de pessoas" as UC4
+  usecase "Informar acompanhantes" as UC5
+  usecase "Informar restrições alimentares" as UC6
+  usecase "Enviar mensagem aos noivos" as UC7
+
+  usecase "Autenticar no painel administrativo" as UC8
+  usecase "Visualizar confirmações de presença" as UC9
+  usecase "Consultar detalhes dos convidados" as UC10
+  usecase "Exportar confirmações em CSV" as UC11
+}
+
+Convidado --> UC1
+Convidado --> UC2
+Convidado --> UC3
+Convidado --> UC7
+
+UC3 .> UC4 : <<inclui>>
+UC3 .> UC5 : <<inclui>>
+UC3 .> UC6 : <<inclui>>
+UC3 .> UC7 : <<opcional>>
+
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+
+UC8 <.. UC9 : <<estende>>
+UC8 <.. UC10 : <<estende>>
+UC8 <.. UC11 : <<estende>>
+
+note right of UC3
+  Um convidado pode confirmar
+  presença ou ausência.
+end note
+
+note right of UC11
+  O CSV contém nomes,
+  acompanhantes, restrições
+  alimentares e mensagens.
+end note
+@enduml

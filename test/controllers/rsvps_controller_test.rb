@@ -7,6 +7,8 @@ class RsvpsControllerTest < ActionDispatch::IntegrationTest
     assert_select "form[action='#{rsvp_path}'][method='post']"
     assert_select "input[name='rsvp[name]']"
     assert_select "input[name='rsvp[email]']"
+    assert_select "textarea[name='rsvp[companion_names]']"
+    assert_select "textarea[name='rsvp[dietary_restrictions]']"
   end
 
   test "should create RSVP with valid params" do
@@ -17,11 +19,16 @@ class RsvpsControllerTest < ActionDispatch::IntegrationTest
           email: "ana@example.com",
           attending: "true",
           guests_count: 2,
+          companion_names: "Carlos Souza",
+          dietary_restrictions: "Vegetariana; alergia a frutos do mar",
           message: "Vamos celebrar!"
         }
       }
     end
 
+    rsvp = Rsvp.order(:created_at).last
+    assert_equal "Carlos Souza", rsvp.companion_names
+    assert_equal "Vegetariana; alergia a frutos do mar", rsvp.dietary_restrictions
     assert_redirected_to rsvp_path
     assert_equal "Sua confirmação foi registrada com sucesso!", flash[:notice]
   end

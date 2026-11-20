@@ -14,6 +14,8 @@
           <th class="py-3 pr-4 font-caps text-gold text-xs">E-mail</th>
           <th class="py-3 pr-4 font-caps text-gold text-xs">Presença</th>
           <th class="py-3 pr-4 font-caps text-gold text-xs">Convidados</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Acompanhantes</th>
+          <th class="py-3 pr-4 font-caps text-gold text-xs">Restrições alimentares</th>
           <th class="py-3 pr-4 font-caps text-gold text-xs">Mensagem</th>
           <th class="py-3 pr-4 font-caps text-gold text-xs">Data</th>
         </tr>
@@ -25,6 +27,8 @@
             <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.email %></td>
             <td class="py-3 pr-4 font-serif text-gold"><%= rsvp.attending ? "Sim" : "Não" %></td>
             <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.guests_count %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.companion_names.presence || "—" %></td>
+            <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.dietary_restrictions.presence || "—" %></td>
             <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.message.presence || "—" %></td>
             <td class="py-3 pr-4 font-serif text-cream"><%= rsvp.created_at.strftime("%d/%m/%Y") %></td>
           </tr>

@@ -9,7 +9,7 @@ module Admin
     def export
       @rsvps = Rsvp.order(created_at: :desc)
       csv_string = CSV.generate(headers: true) do |csv|
-        csv << ["nome", "email", "presença", "convidados", "mensagem", "criado_em"]
+        csv << ["nome", "email", "presença", "convidados", "acompanhantes", "restrições alimentares", "mensagem", "criado_em"]
 
         @rsvps.each do |rsvp|
           csv << [
@@ -17,6 +17,8 @@ module Admin
             rsvp.email,
             rsvp.attending ? "Sim" : "Não",
             rsvp.guests_count,
+            rsvp.companion_names.presence || "",
+            rsvp.dietary_restrictions.presence || "",
             rsvp.message.presence || "",
             rsvp.created_at.strftime("%d/%m/%Y %H:%M")
           ]

@@ -12,7 +12,15 @@ class Rsvp < ApplicationRecord
     self.name = name.to_s.strip
     self.email = email.to_s.strip.downcase
     self.message = message.to_s.strip
+    self.companion_names = companion_names.to_s.strip
+    self.dietary_restrictions = dietary_restrictions.to_s.strip
     self.guests_count = 0 if guests_count.blank?
     self.attending = ActiveModel::Type::Boolean.new.cast(attending) if attending.nil? || attending == ""
+
+    unless attending
+      self.guests_count = 0
+      self.companion_names = nil
+      self.dietary_restrictions = nil
+    end
   end
 end

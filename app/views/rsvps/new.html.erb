@@ -44,8 +44,19 @@
       </div>
 
       <div class="space-y-2">
-        <%= form.label :guests_count, "Número de convidados", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.label :guests_count, "Número total de pessoas", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
         <%= form.number_field :guests_count, min: 0, max: 10, class: "input-gold" %>
+        <p class="text-sm text-cream/60">Inclua você e seus acompanhantes.</p>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :companion_names, "Nome dos acompanhantes", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.text_area :companion_names, rows: 3, class: "input-gold", placeholder: "Informe o nome de cada acompanhante" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :dietary_restrictions, "Restrições alimentares", class: "font-caps text-gold text-xs tracking-[0.2em]" %>
+        <%= form.text_area :dietary_restrictions, rows: 3, class: "input-gold", placeholder: "Ex.: vegetariano, alergia a frutos do mar, celíaco" %>
       </div>
 
       <div class="space-y-2">

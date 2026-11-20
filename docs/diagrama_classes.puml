@@ -1,0 +1,87 @@
+@startuml Desi_Joao_Wedding
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam class {
+  BackgroundColor #FFFDF7
+  BorderColor #7A5A13
+  ArrowColor #7A5A13
+}
+
+class ApplicationRecord {
+  <<abstract>>
+}
+
+class Rsvp {
+  - id : Integer
+  - name : String
+  - email : String
+  - attending : Boolean
+  - guests_count : Integer
+  - companion_names : Text
+  - dietary_restrictions : Text
+  - message : Text
+  - created_at : DateTime
+  - updated_at : DateTime
+  + normalize_fields() : void
+}
+
+class PageSection {
+  - id : Integer
+  - page : String
+  - name : String
+  - title : String
+  - body : Text
+  - created_at : DateTime
+  - updated_at : DateTime
+  + self.[](page : String, name : String) : PageSection
+  + display_page() : String
+}
+
+class PageImage {
+  - id : Integer
+  - page : String
+  - section : String
+  - position : Integer
+  - created_at : DateTime
+  - updated_at : DateTime
+  + image : ActiveStorage::Attached::One
+  + self.for(page : String, section : String) : ActiveRecord::Relation
+}
+
+class ActiveStorageAttachment {
+  - id : Integer
+  - name : String
+  - record_type : String
+  - record_id : Integer
+  - blob_id : Integer
+}
+
+class ActiveStorageBlob {
+  - id : Integer
+  - key : String
+  - filename : String
+  - byte_size : Integer
+  - content_type : String
+  - metadata : Text
+}
+
+ApplicationRecord <|-- Rsvp
+ApplicationRecord <|-- PageSection
+ApplicationRecord <|-- PageImage
+
+PageImage "1" *-- "0..1" ActiveStorageAttachment : possui anexo
+ActiveStorageAttachment "many" --> "1" ActiveStorageBlob : referencia
+
+note right of Rsvp
+  Valida nome, e-mail,
+  presença e quantidade
+  de convidados.
+end note
+
+note bottom of PageSection
+  Conteúdo identificado
+  pela combinação page + name.
+end note
+
+@enduml

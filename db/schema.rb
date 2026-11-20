@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "rsvps", force: :cascade do |t|
     t.boolean "attending", default: true, null: false
+    t.text "companion_names"
     t.datetime "created_at", null: false
+    t.text "dietary_restrictions"
     t.string "email", null: false
     t.integer "guests_count", default: 1, null: false
     t.text "message"
